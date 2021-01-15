@@ -1,2 +1,2 @@
 # autotrader
-The repository fro the project "Auto Trader"
+The repository for the project "Auto Trader"
