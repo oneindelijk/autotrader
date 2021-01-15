@@ -81,7 +81,8 @@ WSGI_APPLICATION = 'pyTrade.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        # 'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql_server_has_gone_away',
         'NAME': 'autotrader',
         'USER': password_dictionary['user'],
         'PASSWORD': password_dictionary['password'],

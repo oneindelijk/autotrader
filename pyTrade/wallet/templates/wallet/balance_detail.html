@@ -1,0 +1,16 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<title>Wallet</title>
+<h1>{{ owner }}</h1>
+{% if balances %}
+<ul>
+    {% for balance in balances %}
+    <li>
+        <a href=>
+            {{ balance.amount }}
+            {{ balance.currency }}
+        </a></li>
+    {% endfor %}
+</ul>
+{% endif %}
