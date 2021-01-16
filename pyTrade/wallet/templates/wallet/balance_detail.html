@@ -1,16 +1,28 @@
 {% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<link rel="icon" href="{% static 'favicon.ico' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'wallet/style.css' %}">
 <title>Wallet</title>
 <h1>{{ owner }}</h1>
-{% if balances %}
-<ul>
-    {% for balance in balances %}
-    <li>
-        <a href=>
-            {{ balance.amount }}
-            {{ balance.currency }}
-        </a></li>
+{% if operations %}
+<table class="center">
+
+    <caption>Operation History</caption>
+    <tr>
+        <th class="header-left-align">Time</th>
+        <th>operation</th>
+        <th class="header-right-align">Amount</th>
+    </tr>
+    {% for operation in operations %}
+        <tr class="{% if operation.operation_sign %}deposit-row{% else %}withdrawal-row{% endif %}">
+            <td>{{ operation }}</td>
+            <td class="centered-col">{% if operation.operation_sign %}+{% else %}-{% endif %}</td>
+            <td class="currency">{{ operation.amount }}</td>
+        </tr>
     {% endfor %}
-</ul>
+    <tr class="total">
+        <td></td>
+        <td class="parameter_right_aligned">Operations:</td>
+        <td class="currency">{{ operations.count }}</td>
+    </tr>
+</table>
 {% endif %}

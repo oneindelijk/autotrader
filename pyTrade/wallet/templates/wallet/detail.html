@@ -1,16 +1,60 @@
 {% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<link rel="icon" href="{% static 'favicon.ico' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'wallet/style.css' %}">
 <title>Wallet</title>
 <h1>{{ owner }}</h1>
+<h2>Base Currency: {{ wallet.baseCurrency }}</h2>
 {% if balances %}
-<ul>
+<table class="center">
+    <caption>Balances</caption>
+    <tr>
+        <th class="header-left-align">Currency</th>
+        <th>Valuta</th>
+        <th class="header-right-align">{{ wallet.baseCurrency }}</th>
+    </tr>
     {% for balance in balances %}
-    <li>
-        <a href="/wallet/bal{{ balance.id }}">
-            {{ balance.amount }}
+    {% if balance.amount > 0 %}
+    <tr class="selectable_row">
+        <td><a href="{% url 'wallet:balance' balance.id %}">
             {{ balance.currency }}
-        </a></li>
+        </a></td>
+        <td class="currency"><a href="{% url 'wallet:balance' balance.id %}">
+            {{ balance.amount_str }}
+        </a></td>
+        <td class="currency"><a href="{% url 'wallet:balance' balance.id %}">
+            {{ balance.converted }}
+        </a></td>
+    </tr>
+    {% endif %}
     {% endfor %}
-</ul>
+    <tr class="total">
+        <td></td>
+        <td class="parameter_right_aligned">Total:</td>
+        <td class="currency">{{ wallet.baseCurrency }} {{ total }}</td>
+    </tr>
+</table>
+{% else %}
+    <p>Wallet is empty</p>
 {% endif %}
+<div id="withdrawal-form" class="form-group">
+<form action="{% url 'wallet:add_valuta' wallet.id %}" method="post">
+    {% csrf_token %}
+    <div class="amount-currency-pair">
+    <label for="amount" class="small-label">Amount</label>
+    <input type="number" step=0.001 name="amount" id="amount" class="input-currency">
+    <select id="currency" name="currency">
+        {% for curr in currency %}
+        <option value="{{ curr.abbreviation }}"{% if curr.abbreviation == wallet.baseCurrency.abbreviation %} selected{% endif %}>{{ curr.abbreviation }}</option>    
+        {% endfor %}
+    </select></div>
+    <div class="button-row">
+    <button type="submit" value="deposit" class="deposit-button yesno" name="operation">Deposit</button>
+    <button type="submit" value="withdraw" class="withdrawal-button yesno" name="operation">Withdraw</button>
+    </div>
+    {% if message != '' %}
+        <div class="error-message">
+        <outputrows="10" cols="30" id="errormsg">{{ message }}</output>
+        </div>
+    {% endif %}
+</form>
+</div>

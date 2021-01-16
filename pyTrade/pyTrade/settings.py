@@ -37,6 +37,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'wallet.apps.WalletConfig',
+    'config.apps.ConfigConfig',
+    'portofolio.apps.PortofolioConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

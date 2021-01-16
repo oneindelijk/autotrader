@@ -1,15 +1,26 @@
 {% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<link rel="icon" href="{% static 'favicon.ico' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'wallet/style.css' %}">
 <h1>Wallets Overview</h1>
 {% if Wallets %}
-    <ul>
+    <table class="center">
+        <caption>Wallets</caption>
+    <tr>
+        <th class="header-left-align">Owner</th>
+        <th class="header-right-align">Total Balance</th>
+    </tr>
     {% for wallet in Wallets %}
-        <li><a href="/wallet/{{ wallet.id }}/">
+    <tr class="selectable_row">
+        <td><a href="{% url 'wallet:detail' wallet.id %}">
             {{ wallet }}
-        </a></li>
+        </a></td>
+        <td class="currency"><a href="{% url 'wallet:detail' wallet.id %}">
+            {{ wallet.total_balance_str }}
+        </a></td>
+       
+    </tr>
     {% endfor %}
-    </ul>
+    </table>
 {% else %}
     <p>No Wallets</p>
 {% endif %}
