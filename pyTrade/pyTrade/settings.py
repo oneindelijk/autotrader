@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from utils.common import get_mysql_secrets
-
+import shutil
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'pyTrade.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [shutil.os.path.join(BASE_DIR, 'templates'),shutil.os.path.join(BASE_DIR, 'common')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,6 +74,11 @@ TEMPLATES = [
         },
     },
 ]
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    BASE_DIR / "common/static/",
+    
+]
 
 WSGI_APPLICATION = 'pyTrade.wsgi.application'
 
@@ -83,8 +88,8 @@ WSGI_APPLICATION = 'pyTrade.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.mysql',
-        'ENGINE': 'mysql_server_has_gone_away',
+        'ENGINE': 'django.db.backends.mysql',
+        # 'ENGINE': 'mysql_server_has_gone_away',
         'NAME': 'autotrader',
         'USER': password_dictionary['user'],
         'PASSWORD': password_dictionary['password'],

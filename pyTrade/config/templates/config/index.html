@@ -1,9 +1,16 @@
-{% load static %}
-<link rel="icon" href="{% static 'favicon.ico' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'wallet/style.css' %}">
+{% extends "config/app_base.html" %}
 
-<div class="navbar-container">
-{% for page in object_list %}
-    <button type="submit" value="{{ page }}" class="navbar-horizontal-btn" name="configpage">{{ page }}</button>
+{% block content %}
+Settings
+{% if setting %}
+{{ setting }}
+{% endif %}
+Pages
+{% if settings_index_pages %}
+{% for page in settings_index_pages %}
+{{ page }}{{ page.id }}
 {% endfor %}
-</div>
+{% endif %}
+
+
+{% endblock content %}

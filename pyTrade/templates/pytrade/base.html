@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="{% static '/common/favicon.ico' %}">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/common/css/style.css' %}">
+    <title>Py Trade - Autotrader</title>
+</head>
+
+<body>
+
+
+    <div class="main-navbar-container">
+        <div class="left-navbar-container bg-dark"></div>
+        <div class="middle-navbar-container bg-dark">
+            <div class="middle-navbar-container-top">
+                <!-- <nav class="navbar navbar-nav navbar-expand-lg navbar-light bg-dark justify-content-between"> -->
+                <!-- <nav class="bg-dark navbar nav nav-pills nav-fill" id="navbarNavDropdown"> -->
+                <!-- <a class="navbar-brand" href="#"></a> -->
+
+                <a class="navbar-horizontal-btn {% if app == 'portofolio' %}navbar-btn-active{% endif %}" href="{% url 'portofolio:index'%}">Portofolio</a>
+                <a class="navbar-horizontal-btn {% if app == 'wallet' %}navbar-btn-active{% endif %}" href="{% url 'wallet:index'%}">Wallets</a>
+                <a class="navbar-horizontal-btn {% if app == 'config' %}navbar-btn-active{% endif %}" href="{% url 'config:settingspage' 1 %}">Settings</a>
+            </div>
+            <div class="middle-navbar-container-bottom">{% block appnavbar %}{% endblock %}</div>
+        </div>
+        <div class="right-navbar-container bg-dark"></div>
+        <!-- </nav> -->
+    </div>
+    <div class="main-content-container">
+        <div class="main-center-content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+
+</html>

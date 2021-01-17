@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+     
+    
+    path('common/', include('common.urls')),
     path('wallet/', include('wallet.urls')),
     path('portofolio/', include('portofolio.urls')),
     path('config/', include('config.urls')),
-    path('common/', include('common.urls')),
     path('admin/', admin.site.urls),
 ]

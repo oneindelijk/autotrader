@@ -1,0 +1,36 @@
+{% extends "config/app_base.html" %}
+
+{% block content %}
+{% if pages %}
+
+<div class="main-content-container">
+    <div class="main-center-content">
+        <div class="settingsframe">
+            <table>
+                <tr>
+                    <th class="header-left-align">Parameter</th>
+                    <th>Value</th>
+                    <th class="header-left-align">Comment</th>
+                </tr>
+                {% for setting in settings %}
+                <tr>
+                    <td>{{ setting.settingsParameter }}</td>
+                    {% if setting.settingsType == 1 %}
+                    <td>{{ setting.settingsValue }}</td>
+                    {% elif setting.settingsType == 2 %}
+                    <td>{{ setting.settingsIntValue }}</td>
+                    {% elif setting.settingsType == 3 %}
+                    <td>{{ setting.settingsFloatValue }}</td>
+                    {% else %}
+                    <td><strong>"Error Value Type"</strong></td>
+                    {% endif %}
+                    <td>{{ setting.settingsComment }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

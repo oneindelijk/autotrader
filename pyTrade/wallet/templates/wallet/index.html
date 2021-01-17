@@ -1,6 +1,5 @@
-{% load static %}
-<link rel="icon" href="{% static 'favicon.ico' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'wallet/style.css' %}">
+{% extends "wallet/app_base.html" %}
+{% block content %}
 <h1>Wallets Overview</h1>
 {% if Wallets %}
     <table class="center">
@@ -24,3 +23,5 @@
 {% else %}
     <p>No Wallets</p>
 {% endif %}
+
+{% endblock content %}

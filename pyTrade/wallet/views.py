@@ -10,7 +10,7 @@ from .models import Wallet, Balance, Operation, Currency
 
 def index(request):
     Wallets = Wallet.objects.all()
-    context = {'Wallets': Wallets}
+    context = {'Wallets': Wallets, 'app': 'wallet'}
     return render(request, 'wallet/index.html', context)
  
 def detail(request, wallet_id, message=''):
@@ -28,14 +28,15 @@ def detail(request, wallet_id, message=''):
                 'balances': balances,
                 'total': total,
                 'currency': C,
-                'message': message
+                'message': message, 
+                'app': 'wallet'
     }
     return render(request, 'wallet/detail.html', context)
 
 def balance_detail(request, balance_id):
     balance = Balance.objects.get(pk = balance_id)
     operations = Operation.objects.filter(balance = balance)
-    context = {'owner': balance.wallet.owner,'balance': balance, 'operations': operations}
+    context = {'owner': balance.wallet.owner,'balance': balance, 'operations': operations, 'app': 'wallet'}
     return render(request, 'wallet/balance_detail.html', context)
 
 def add_valuta(request, wallet_id):

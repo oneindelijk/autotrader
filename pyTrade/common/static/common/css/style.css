@@ -1,75 +1,99 @@
 body {
-    background: white url("images/autotrader-bg.gif") no-repeat;
+    background: url("../images/autotrader-bg.gif") no-repeat;
     color: #abbcd3;
     font-family: Arial, Helvetica, sans-serif;
 }
-h1, h2 {
+
+h1,
+h2 {
     text-align: center;
 }
+
 a {
     color: #d7e6fa;
 }
+
+a:hover {
+    color: #d7e6fa;
+    text-decoration: none;
+}
+
 table {
     border: 2px solid rgb(53, 65, 92);
     width: 98%;
 }
-table, th, td {
+
+table,
+th,
+td {
     border-collapse: collapse;
-  } 
+}
+
 th {
-    background: rgb(50, 61, 82); 
+    background: rgb(50, 61, 82);
     color: #8b8bf0;
 
-}  
-th, td {
+}
+
+th,
+td {
     padding-left: 5px;
     padding-right: 5px;
     padding-top: 2px;
     padding-bottom: 2px;
- }
+}
 
- tr.selectable_row:hover { 
-    background: rgb(53, 65, 92); 
+tr.selectable_row:hover {
+    background: rgb(53, 65, 92);
     color: #fdfdfd;
- }
- tr.total {
-    background: rgb(163, 184, 223); 
+}
+
+tr.total {
+    background: rgb(163, 184, 223);
     color: #030322;
- }
- tr.deposit-row {
+}
+
+tr.deposit-row {
     color: rgb(95, 186, 166);
- }
- tr.withdrawal-row {
+}
+
+tr.withdrawal-row {
     color: rgb(179, 133, 133);
- }
- td a { 
-    display: block; 
+}
+
+td a {
+    display: block;
     border: 0px solid black;
-    
+
     text-decoration-line: none;
- }
- td.centered-col {
-     text-align: center;
- }
+}
+
+td.centered-col {
+    text-align: center;
+}
+
 form {
     overflow: hidden;
 }
- 
+
 label {
     float: left;
     width: 200px;
     padding-right: 24px;
 }
+
 label.small-label {
-    width: 40px; 
+    width: 65px;
     padding-top: 8px;
-} 
+}
+
 input {
     border: none;
     float: left;
     width: auto;
     border-radius: 4px;
 }
+
 select {
     border: none;
     float: left;
@@ -79,82 +103,179 @@ select {
     margin-left: 10px;
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none; 
+    appearance: none;
 
 }
+
 input.input-currency {
     width: 160px;
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none; 
-} 
-.amount-currency-pair {
-    display: inline-flex;
+    appearance: none;
 }
+
+.amount-currency-pair {
+    float: right;
+
+
+}
+
 button {
     border: none;
-    color: white;
-    padding: 10px 25px;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
     border-radius: 4px;
-    width: 48%; 
-    /*float: right;
-    height: 20px;*/
-    padding-top: 5px;
 }
+
 .button-row {
     padding-top: 15px;
     display: block;
+    color: rgb(15, 39, 99);
+    font-size: 16px;
 
 }
+
+button.yesno {
+    padding: 10px 25px;
+    width: 48%;
+    color: white;
+
+}
+
 button.deposit-button {
     float: left;
     background-color: #4d82c9;
 }
+
 button.withdrawal-button {
     float: right;
     background-color: #A4633C;
-}  
+}
 
+.navbar-container {
+    width: 70%;
+    margin: auto;
+}
+
+.navbar-horizontal-btn {
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+    padding: 5px 28px;
+    border-radius: 0px;
+    opacity: 40%;
+    color: #0075ec;
+    background-color: #cbceff;
+}
+
+.appnavbar {
+    font-size: 14px;
+}
+
+.navbar-btn-active {
+
+    opacity: 70%;
+    /* background-color: #7779a2;
+    color: #0075ec; */
+}
+
+.navbar-horizontal-btn:hover {
+    opacity: 60%;
+
+    border-radius: 8%;
+    color: #0075ec;
+    background-color: #0c0e26;
+}
 
 .center {
     margin-left: auto;
     margin-right: auto;
-  }
+}
+
 .header-left-align {
-      text-align: left;
-  }
+    text-align: left;
+}
+
 .header-right-align {
-      text-align: right;
-  }
+    text-align: right;
+}
+
 .currency {
     text-align: right;
 }
-.parameter_right_aligned{
+
+.parameter_right_aligned {
     text-align: right;
 }
 
 #withdrawal-form {
-    width: 300px;
+    width: 350px;
     padding-top: 20px;
     padding-left: 25px;
-    padding-right: 20px; 
-    padding-bottom: 20px; 
+    padding-right: 20px;
+    padding-bottom: 20px;
     float: right;
 
- }
- .error-message {
-     color:red;
-     width: 100%;
-     margin: auto;
-     font-weight: bold;
-     float: inline-start;
-     padding-top: 10px;
+}
+
+.error-message {
+    color: red;
+    width: 100%;
+    margin: auto;
+    font-weight: bold;
+    float: inline-start;
+    padding-top: 10px;
     text-align: center;
-     
- }
- #errormsg {
+
+}
+
+#errormsg {
     text-align: center;
- }
+}
+
+.topsection {
+    float: left;
+    display: inline-grid;
+}
+
+.main-navbar-container {
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+}
+
+.left-navbar-container {
+    width: 30px;
+}
+
+.middle-navbar-container {
+    display: grid;
+    grid-template-rows: auto;
+}
+
+.right-navbar-container {
+    width: 50px;
+}
+
+.main-content-container {
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+}
+
+.main-center-content {
+    grid-column: 2;
+}
+
+
+.page-header {
+    font-size: 18px;
+    background-color: rgb(34, 35, 57);
+    background-blend-mode: difference;
+    text-align: center;
+}
+
+.settingsframe {
+    padding: 10px 10px;
+
+
+}

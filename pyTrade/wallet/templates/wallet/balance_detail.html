@@ -1,6 +1,5 @@
-{% load static %}
-<link rel="icon" href="{% static 'favicon.ico' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'wallet/style.css' %}">
+{% extends "wallet/app_base.html" %}
+{% block content %}
 <title>Wallet</title>
 <h1>{{ owner }}</h1>
 {% if operations %}
@@ -26,3 +25,4 @@
     </tr>
 </table>
 {% endif %}
+{% endblock content %}

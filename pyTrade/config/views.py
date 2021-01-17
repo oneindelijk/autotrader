@@ -6,16 +6,24 @@ from django.views import generic
 
 from .models import SettingsPage, Setting
 
-def index(request):
+# def index(request):
     
-    context = {'SettingsPage': SettingsPage}
-    return render(request, 'config/index.html', context)
+#     context = {'SettingsPage': SettingsPage}
+#     return render(request, 'config/index.html', context)
 
-class IndexView(generic.ListView):
-    context_object_name = 'settings_index_page'
-    template_name = 'config/index.html'
-    model = SettingsPage
-
-class DetailView(generic.DetailView):
-    model = Setting
+class SettingsPageView(generic.DetailView):
+    context_object_name = 'pages'
     template_name = 'config/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print (self.__dict__)
+        settings = Setting.objects.filter(settingsPage = self.page)
+        pages = SettingsPage.objects.all()
+        context= {'app':'config','settings': settings, 'pages': pages, 'active_page': self.page }
+        print('Context', context)
+        return context
+    
+    def get_queryset(self):
+        self.page = get_object_or_404(SettingsPage, id=self.kwargs['pk'])
+        return Setting.objects.filter(settingsPage=self.page)

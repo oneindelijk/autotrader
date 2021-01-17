@@ -15,9 +15,10 @@ class Setting(models.Model):
     settingsParameter = models.CharField('Parameter Name', max_length = 200)
     settingsValue = models.CharField('Value', max_length = 512, blank = True)
     settingsComment = models.TextField('Comment', blank = True)
-    settingsIntValue = models.IntegerField('Integer Value', blank = True)
-    settingsFloatValue = models.FloatField('Float Value', blank = True)
+    settingsIntValue = models.IntegerField('Integer Value', blank = True, null=True)
+    settingsFloatValue = models.FloatField('Float Value', blank = True, null=True)
+    settingsType = models.IntegerField('ValueType', default=1)
 
     def __str__(self):
-        return self.settingsParameter
+        return '{}:{}'.format(self.settingsPage,self.settingsParameter)
     
