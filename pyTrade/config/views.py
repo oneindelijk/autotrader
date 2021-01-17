@@ -13,7 +13,7 @@ from .models import SettingsPage, Setting
 
 class SettingsPageView(generic.DetailView):
     context_object_name = 'pages'
-    template_name = 'config/detail.html'
+    template_name = 'config/settings.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,3 +27,7 @@ class SettingsPageView(generic.DetailView):
     def get_queryset(self):
         self.page = get_object_or_404(SettingsPage, id=self.kwargs['pk'])
         return Setting.objects.filter(settingsPage=self.page)
+
+class EditSettings(generic.UpdateView):
+    queryset = Setting.objects.all()
+    template_name = 'config/edit.html'

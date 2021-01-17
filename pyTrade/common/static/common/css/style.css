@@ -171,6 +171,11 @@ button.withdrawal-button {
 
 .appnavbar {
     font-size: 14px;
+    opacity: 50%;
+}
+
+.sub-navbar-container {
+    opacity: 60%;
 }
 
 .navbar-btn-active {
@@ -241,11 +246,11 @@ button.withdrawal-button {
 
 .main-navbar-container {
     display: grid;
-    grid-template-columns: 10% auto 10%;
+    grid-template-columns: 1% auto 1%;
 }
 
 .left-navbar-container {
-    width: 30px;
+    opacity: 100px;
 }
 
 .middle-navbar-container {
@@ -254,17 +259,18 @@ button.withdrawal-button {
 }
 
 .right-navbar-container {
-    width: 50px;
+    opacity: 100px;
 }
 
 .main-content-container {
     display: grid;
-    grid-template-columns: 10% auto 10%;
+    grid-template-columns: 2% auto 1%;
 }
 
 .main-center-content {
     grid-column: 2;
 }
+
 
 
 .page-header {

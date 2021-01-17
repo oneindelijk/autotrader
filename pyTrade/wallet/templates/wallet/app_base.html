@@ -1,3 +1,10 @@
 {% extends "pytrade/base.html" %}
-{% block content %}
-{% endblock content %}
+{% block appnavbar %}
+<div class="sub-navbar-container">
+
+    <a class="navbar-horizontal-btn appnavbar" href="{% url 'wallet:index' %}">All Wallets</a>
+    {% if wallet.id %}
+    <a class="navbar-horizontal-btn appnavbar" href="{% url 'wallet:detail' wallet.id %}">Overview</a>
+    {% endif %}
+</div>
+{% endblock %}

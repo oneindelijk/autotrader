@@ -35,8 +35,9 @@ def detail(request, wallet_id, message=''):
 
 def balance_detail(request, balance_id):
     balance = Balance.objects.get(pk = balance_id)
+    ActiveWallet = Wallet.objects.get(id=balance.wallet.id)
     operations = Operation.objects.filter(balance = balance)
-    context = {'owner': balance.wallet.owner,'balance': balance, 'operations': operations, 'app': 'wallet'}
+    context = {'owner': balance.wallet.owner,'balance': balance, 'operations': operations, 'app': 'wallet','wallet': ActiveWallet,}
     return render(request, 'wallet/balance_detail.html', context)
 
 def add_valuta(request, wallet_id):
