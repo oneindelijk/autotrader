@@ -1,7 +1,7 @@
 {% extends "config/app_base.html" %}
 
 {% block content %}
-{% if pages %}
+<!-- {% if pages %} -->
 
 <div class="main-content-container">
     <div class="main-center-content">
@@ -13,7 +13,7 @@
                     <th class="header-left-align">Comment</th>
                     <!-- <th width=10px><a href="{% url 'config:settingspage' page.id %}">@</a></th> -->
                 </tr>
-                {% for setting in settings %}
+                <!-- {% for setting in settings %}
                 <tr>
                     <td>{{ setting.settingsParameter }}</td>
                     {% if setting.settingsType == 1 %}
@@ -27,11 +27,11 @@
                     {% endif %}
                     <td colspan=2>{{ setting.settingsComment }}</td>
                 </tr>
-                {% endfor %}
+                {% endfor %} -->
             </table>
         </div>
     </div>
 </div>
-{% endif %}
+<!-- {% endif %} -->
 
 {% endblock %}

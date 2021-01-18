@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import generic
 # Create your views here.
 
-from .models import SettingsPage, Setting
+from .models import SettingsPage, Setting, Parameter
 
 # def index(request):
     
@@ -23,20 +23,21 @@ class IndexView(generic.ListView):
     model = SettingsPage
     template_name = 'config/pageslist.html'
     context_object_name = 'pages'
-    
+
 class SettingsPageView(generic.DetailView):
     context_object_name = 'pages'
     template_name = 'config/settings.html'
+    # model = Parameter
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # print (self.__dict__)
-        settings = Setting.objects.filter(settingsPage = self.page)
-        pages = SettingsPage.objects.all()
-        context.update({'app':'config','settings': settings, 'pages': pages, 'active_page': self.page })
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     # print (self.__dict__)
+    #     settings = Setting.objects.filter(settingsPage = self.page)
+    #     pages = SettingsPage.objects.all()
+    #     context.update({'app':'config','settings': settings, 'pages': pages, 'active_page': self.page })
         
-        debug_dict(context, 'CONTEXT')
-        return context
+    #     debug_dict(context, 'CONTEXT')
+    #     return context
     
     def get_queryset(self):
         self.page = get_object_or_404(SettingsPage, id=self.kwargs['pk'])
