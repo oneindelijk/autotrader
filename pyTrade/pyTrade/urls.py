@@ -22,6 +22,6 @@ urlpatterns = [
     path('portofolio/', include('portofolio.urls')),
     path('config/', include('config.urls')),
     path('admin/', admin.site.urls),
-    path('', include('portofolio.urls')),
+    # path('', include('common.urls')),
     # path('', static, name='common/index.html'),
 ]

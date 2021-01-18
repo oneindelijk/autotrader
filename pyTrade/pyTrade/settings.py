@@ -36,9 +36,9 @@ ALLOWED_HOSTS = ['snifer','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'portofolio.apps.PortofolioConfig',
     'wallet.apps.WalletConfig',
     'config.apps.ConfigConfig',
-    'portofolio.apps.PortofolioConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
