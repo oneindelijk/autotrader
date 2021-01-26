@@ -12,11 +12,11 @@
         <th class="header-right-align">Amount</th>
     </tr>
     {% for operation in operations %}
-        <tr class="{% if operation.operation_sign %}deposit-row{% else %}withdrawal-row{% endif %}">
-            <td>{{ operation }}</td>
-            <td class="centered-col">{% if operation.operation_sign %}+{% else %}-{% endif %}</td>
-            <td class="currency">{{ operation.amount }}</td>
-        </tr>
+    <tr class="{% if operation.operation_sign %}deposit-row{% else %}withdrawal-row{% endif %}">
+        <td>{{ operation }}</td>
+        <td class="centered-col">{% if operation.operation_sign %}+{% else %}-{% endif %}</td>
+        <td class="currency">{{ operation.amount }}</td>
+    </tr>
     {% endfor %}
     <tr class="total">
         <td></td>
@@ -24,5 +24,8 @@
         <td class="currency">{{ operations.count }}</td>
     </tr>
 </table>
+{% autoescape off %}
+{{ graph }}
+{% endautoescape %}
 {% endif %}
 {% endblock content %}

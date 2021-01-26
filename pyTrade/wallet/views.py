@@ -7,6 +7,7 @@ import shutil
 # Create your views here.
 
 from .models import Wallet, Balance, Operation, Currency
+from .graphs import  operations_graph_per_balance
 
 def index(request):
     Wallets = Wallet.objects.all()
@@ -37,7 +38,9 @@ def balance_detail(request, balance_id):
     balance = Balance.objects.get(pk = balance_id)
     ActiveWallet = Wallet.objects.get(id=balance.wallet.id)
     operations = Operation.objects.filter(balance = balance)
-    context = {'owner': balance.wallet.owner,'balance': balance, 'operations': operations, 'app': 'wallet','wallet': ActiveWallet,}
+    O = Operation()
+    graph = operations_graph_per_balance(balance.pk)
+    context = {'owner': balance.wallet.owner,'balance': balance, 'operations': operations, 'app': 'wallet','wallet': ActiveWallet, 'graph': graph}
     return render(request, 'wallet/balance_detail.html', context)
 
 def add_valuta(request, wallet_id):

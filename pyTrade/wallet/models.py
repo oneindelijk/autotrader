@@ -129,4 +129,3 @@ class Operation(models.Model):
         self.balance.save()
         self.save()
 
- 

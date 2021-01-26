@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from .models import Portofolio
+
 # Create your views here.
 
+from .models import Portofolio
+
 def index(request):
-    
+    pass
     context = {'Portofolio': Portofolio}
     return render(request, 'portofolio/index.html', context)
+
