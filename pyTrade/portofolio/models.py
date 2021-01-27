@@ -2,6 +2,7 @@
 from django.db import models
 import datetime
 from .stocktools import download_ticker_dataframe
+import shutil
 # Create your models here.
 
 class Company(models.Model):
@@ -30,30 +31,33 @@ class Company(models.Model):
                                                         # specifically hold back from selling when untrue
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.symbol}"
 
     def refresh_companies():
         ''' refresh the list of companies listings on nasdaq '''
         dataframe = download_ticker_dataframe()
-        C = Company()
-        field_links = [
-                    #    ('Nasdaq Traded',None),
-                       ('Security Name',C.name), 
-                    #    ('Listing Exchange',None),
-                       ('Market Category',C.market_category),
-                       ('ETF',C.etf),
-                    #    'Round Lot Size', 'Test Issue', 'Financial Status', 
-                       ('CQS Symbol',C.symbol_cqs),
-                       ('NASDAQ Symbol',C.symbol_nasdaq),
-                    # 'NextShares'
-                       ]
         index_lookup = list(dataframe.keys())
+        field_links = [('Security Name','name'), 
+                       ('Market Category','market_category'),
+                       ('ETF','etf'),
+                       ('CQS Symbol','symbol_cqs'),
+                       ('NASDAQ Symbol','symbol_nasdaq') ]
         for df_row in dataframe.itertuples():
-            C = Company.objects.create(symbol = df_row.index())
+            QS = Company.objects.filter(symbol = df_row.Index)
+            if QS.count == 0:
+                C = Company.objects.create(symbol = df_row.Index)
+            else:
+                # update first match, even if there are more (shouldn't be)
+                try:
+                    C = QS[0]
+                except IndexError:
+                    print(df_row)
+                    print(QS)
+                    yield IndexError
             for df_field, table_col in field_links:
-                table_col = df_row[index_lookup.index(df_field) + 1]
+                setattr(C, table_col,df_row[index_lookup.index(df_field) + 1])
             C.save()
-
+            
 
     
 class StockData(models.Model):

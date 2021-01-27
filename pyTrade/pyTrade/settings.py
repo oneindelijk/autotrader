@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'portofolio.apps.PortofolioConfig',
     'wallet.apps.WalletConfig',
     'config.apps.ConfigConfig',
+    'django_tables2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

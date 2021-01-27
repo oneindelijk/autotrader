@@ -9,6 +9,17 @@ import shutil
 from .models import Wallet, Balance, Operation, Currency
 from .graphs import  operations_graph_per_balance
 
+def get_extra_content(active_id):
+    pages = ['wallets', 'balance']
+    Pages = []
+    for i,p in enumerate(pages):
+        Pages.append({'active': i + 1 == active_id,
+                      'id': i + 1, 
+                      'link':'portofolio:' + p,
+                      'title': p[0].upper() + p[1:]
+                      })
+    return {'pages_list':Pages, 'app':'portofolio'}
+
 def index(request):
     Wallets = Wallet.objects.all()
     context = {'Wallets': Wallets, 'app': 'wallet'}

@@ -1,11 +1,4 @@
 {% extends "pytrade/base.html" %}
-{% block appnavbar %}
-{% if pages_list %}
-<nav class="navbar-horizontal-btn appnavbar">
-    {% for page in pages_list %}
-    <a class="navbar-horizontal-btn appnavbar" href="{% url page.link %}">{{page.title}}</a>
-    {% endfor %}
+{% block app_base %}
 
-</nav>
-{% endif %}
-{% endblock appnavbar %}
+{% endblock app_base %}

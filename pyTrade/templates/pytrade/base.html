@@ -18,33 +18,23 @@
 
 <body>
 
-    <!-- 
-    <div class="main-navbar-container">
-        <div class="left-navbar-container bg-dark"></div>
-        <div class="middle-navbar-container bg-dark">
-            <div class="middle-navbar-container-top"> -->
-    <nav class="navbar-horizontal-btn mainnavbar">
-        <!-- <nav class="navbar navbar-nav navbar-expand-lg navbar-light bg-dark justify-content-between"> -->
-        <!-- <nav class="bg-dark navbar nav nav-pills nav-fill" id="navbarNavDropdown"> -->
-        <!-- <a class="navbar-brand" href="#"></a> -->
-
+    <nav class="navbar-horizontal mainnavbar">
         <a class="navbar-horizontal-btn {% if app == 'portofolio' %}navbar-btn-active{% endif %}" href="{% url 'portofolio:index'%}">Portofolio</a>
         <a class="navbar-horizontal-btn {% if app == 'wallet' %}navbar-btn-active{% endif %}" href="{% url 'wallet:index'%}">Wallets</a>
         <a class="navbar-horizontal-btn {% if app == 'config' %}navbar-btn-active{% endif %}" href="{% url 'config:settingspage' 1 %}">Settings</a>
     </nav>
-    {% block appnavbar %}
+    {% if pages_list %}
+    <nav class="navbar-horizontal appnavbar">
+        {% for page in pages_list %}
+        <a class="navbar-horizontal-btn appnavbar-btn{% if page.active %} navbar-btn-active{% endif %}" href="{% url page.link %}">{{page.title}}</a>{% endfor %}
+    </nav>
+    {% endif %}
+    {% block app_base %}
     {% endblock %}
-    <!-- <div class="middle-navbar-container-bottom">{% block appnavbar %}{% endblock %}</div>
-        </div>
-        <div class="right-navbar-container bg-dark"></div>
- </nav> 
-    </div>
-    <div class="main-content-container">
-        <div class="main-center-content"> -->
+
     {% block content %}
     {% endblock %}
-    <!-- </div> -->
-    <!-- </div> -->
+
 </body>
 
 </html>

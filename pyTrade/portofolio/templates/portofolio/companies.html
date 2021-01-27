@@ -1,11 +1,47 @@
 {% extends "portofolio/app_base.html" %}
+{% load render_table from django_tables2 %}
 {% block content %}
 <h1>Companies Listing</h1>
-<ul>
+
+
+<p class="searchbar">
+    <form class="searchform" action="{% url 'portofolio:filter_companies' %}" method="GET">
+        <input class="searchfield" type="search" name="filter">
+        <input class="button action-button searchbutton" type="submit" value="Filter">
+    </form>
+</p>
+{% render_table object_list %}
+<!-- <table>
+    <tr>
+        <th>Name</th>
+    </tr>
     {% for o in object_list %}
-    <li>
-        {{ o }}
-    </li>
+    <tr>
+        <td>{{ o.symbol }}</td>
+    </tr>
     {% endfor %}
-</ul>
+    </ul>
+</table> -->
+{% if is_paginated %}
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+<p></p>
+<a class="action-button btn-refresh" href="{% url 'portofolio:refresh_companies' %}">Update Companies List</a>
+Updating companies takes a long time. Please be patient
 {% endblock content %}

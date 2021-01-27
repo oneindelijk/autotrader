@@ -9,14 +9,14 @@ h2 {
     text-align: center;
 }
 
-a {
+/* a {
     color: #d7e6fa;
 }
 
 a:hover {
     color: #d7e6fa;
     text-decoration: none;
-}
+} */
 
 table {
     border: 2px solid rgb(53, 65, 92);
@@ -170,9 +170,57 @@ button.withdrawal-button {
     background-color: #cbceff;
 }
 
+.navbar-horizontal-btn:hover {
+    opacity: 60%;
+
+    text-decoration: none;
+    border-radius: 8%;
+    color: #87c3ff;
+    background-color: #0c0e26;
+}
+
 .appnavbar {
     font-size: 14px;
-    opacity: 50%;
+    opacity: 70%;
+    display: ruby;
+}
+
+.appnavbar-btn {
+    font-size: 14px;
+    color: #0075ec;
+    background-color: #f0cfb5;
+    display: ruby;
+}
+
+.btn-refresh {
+    display: inline;
+}
+
+.action-button {
+    color: white;
+    background-color: #56598c;
+    opacity: .7;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 5px 28px;
+}
+
+.action-button:hover {
+    color: white;
+    background-color: #56598c;
+    text-decoration: none;
+    opacity: 1;
+
+}
+
+.searchbutton {
+    font-size: 12px;
+    margin-left: 10px;
+    width: 175px;
+    float: left;
 }
 
 .sub-navbar-container {
@@ -186,13 +234,6 @@ button.withdrawal-button {
     color: #0075ec; */
 }
 
-.navbar-horizontal-btn:hover {
-    opacity: 60%;
-
-    border-radius: 8%;
-    color: #0075ec;
-    background-color: #0c0e26;
-}
 
 .center {
     margin-left: auto;
@@ -279,6 +320,17 @@ button.withdrawal-button {
     background-color: rgb(34, 35, 57);
     background-blend-mode: difference;
     text-align: center;
+}
+
+
+.searchfield {
+    width: calc(100% - 220px);
+    /* margin-right: 15px; */
+    /* padding: 15px; */
+}
+
+.searchform {
+    /* padding: 15px; */
 }
 
 .settingsframe {
