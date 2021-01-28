@@ -1,5 +1,6 @@
 
 from django.db import models
+from django.db.utils import DataError
 import datetime
 from .stocktools import download_ticker_dataframe
 import shutil
@@ -9,7 +10,7 @@ class Company(models.Model):
 
     # portofolio = models.ForeignKey(Portofolio, on_delete = models.CASCADE)
     symbol = models.CharField('Symbol', max_length = 200)
-    name = models.CharField('Name', max_length = 200)   
+    name = models.CharField('Name', max_length = 512)   
     symbol_cqs = models.CharField('CQS Symbol', max_length = 200, null=True, blank=True) 
     symbol_nasdaq = models.CharField('NASDAQ Symbol', max_length = 200, null=True, blank=True)
     etf = models.BooleanField('ETF', max_length = 200, null=True, blank=True)  
@@ -33,19 +34,23 @@ class Company(models.Model):
     def __str__(self):
         return f"{self.symbol}"
 
-    def refresh_companies():
+    def refresh_companies(self):
         ''' refresh the list of companies listings on nasdaq '''
         dataframe = download_ticker_dataframe()
+        print('Dataframe with {} rows acquired'.format(len(dataframe)))
         index_lookup = list(dataframe.keys())
         field_links = [('Security Name','name'), 
                        ('Market Category','market_category'),
                        ('ETF','etf'),
                        ('CQS Symbol','symbol_cqs'),
                        ('NASDAQ Symbol','symbol_nasdaq') ]
+        ALL = Company.objects.all()
         for df_row in dataframe.itertuples():
-            QS = Company.objects.filter(symbol = df_row.Index)
-            if QS.count == 0:
+            update = False
+            QS = ALL.filter(symbol = df_row.Index)
+            if QS.count() == 0:
                 C = Company.objects.create(symbol = df_row.Index)
+                update = True
             else:
                 # update first match, even if there are more (shouldn't be)
                 try:
@@ -53,11 +58,21 @@ class Company(models.Model):
                 except IndexError:
                     print(df_row)
                     print(QS)
-                    yield IndexError
-            for df_field, table_col in field_links:
-                setattr(C, table_col,df_row[index_lookup.index(df_field) + 1])
-            C.save()
-            
+                    raise IndexError
+                except DataError:
+                    print('Data Error for record {} \nSkipping.'.format(df_row)) 
+                else: 
+                    if self.check_fields(df_row, C):
+                        update = True
+            if update:
+                for df_field, table_col in field_links:
+                    setattr(C, table_col,df_row[index_lookup.index(df_field) + 1])
+                C.save()
+
+    def check_fields(self, dataframe_row, recordset):
+        ''' check if anything is different, return True if an update is needed '''
+        # Todo: turn on updating of change fields
+        return False
 
     
 class StockData(models.Model):
