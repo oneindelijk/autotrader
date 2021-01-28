@@ -7,10 +7,10 @@
 <p class="searchbar">
     <form class="searchform" action="{% url 'portofolio:companies' %}" method="GET">
         <input class="searchfield" type="search" name="filter">
-        <input class="button action-button searchbutton" type="submit" value="Filter">
+        <input class="button action-button searchbutton" type="submit" value="Search">
     </form>
 </p>
-{% render_table object_list %}
+{% render_table table %}
 <!-- <table>
     <tr>
         <th>Name</th>

@@ -2,6 +2,7 @@ body {
     background: url("../images/autotrader-bg.gif") no-repeat;
     color: #abbcd3;
     font-family: Arial, Helvetica, sans-serif;
+    line-height: 1;
 }
 
 h1,
@@ -17,6 +18,22 @@ a:hover {
     color: #d7e6fa;
     text-decoration: none;
 } */
+.table {
+    color: grey;
+    /* border: none; */
+}
+
+.odd {
+    color: rgb(165, 183, 223);
+    /* border: none; */
+
+}
+
+.even {
+    color: rgb(142, 223, 215);
+    /* border: none; */
+
+}
 
 table {
     border: 2px solid rgb(53, 65, 92);
@@ -363,3 +380,11 @@ button.withdrawal-button {
     background-color: rgba(50, 61, 185, .9);
     border-radius: 15px;
 } */
+
+.name-column {
+    width: 35%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 40px;
+}
