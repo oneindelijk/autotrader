@@ -1,11 +1,11 @@
 {% extends "pytrade/base.html" %}
-{% block appnavbar %}
+{% block app_base %}
 <div class="sub-navbar-container">
-    <!-- {% for page in pages %}
+    {% for page in pages %}
     <a class="navbar-horizontal-btn appnavbar
     {% if active_page == page %}navbar-btn-active{% endif %}" href="{% url 'config:settingspage' page.id %}">
         {{ page }}
     </a>
-    {% endfor %} -->
+    {% endfor %}
 </div>
-{% endblock %}
+{% endblock app_base %}

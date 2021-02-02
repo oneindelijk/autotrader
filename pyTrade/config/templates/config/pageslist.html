@@ -1,7 +1,8 @@
 {% extends "config/app_base.html" %}
 
 {% block content %}
-<!-- {% for page in pages %}
-<p><a href="{% url 'config:settingspage' page.id %}">{{page}}</a> </p>
-{% endfor %} -->
+{% for page in pages %}
+<div>PAGE {{ loopnum }}</div>
+<!-- <p><a href="{% url 'config:settingspage' page.id %}">{{page}}</a> </p> -->
+{% endfor %}
 {% endblock %}

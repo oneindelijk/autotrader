@@ -388,3 +388,7 @@ button.withdrawal-button {
     text-overflow: ellipsis;
     max-width: 40px;
 }
+
+.select-column {
+    width: 10px;
+}

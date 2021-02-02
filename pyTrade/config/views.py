@@ -19,16 +19,31 @@ def debug_dict(dct, extra = ''):
     for key in dct.keys():
         print("{}'{}'".format(''.ljust(xtra_len),key), dct[key])
 
+def get_extra_content(active_id):
+    pages = SettingsPage.objects.all()
+    Pages = []
+    for i,p in enumerate(pages):
+        Pages.append({'active': i + 1 == active_id,
+                      'id': i + 1, 
+                      'link': p.get_absolute_url(),
+                      'title': p.pageName,
+                      })
+    return {'pages_list':Pages, 'app':'config'}
+
 class IndexView(generic.ListView):
     model = SettingsPage
     template_name = 'config/pageslist.html'
     context_object_name = 'pages'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(get_extra_content(0))
+        # debug_dict (context)
+        return context
 
 class SettingsPageView(generic.DetailView):
     context_object_name = 'pages'
     template_name = 'config/settings.html'
     # model = Parameter
-
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
     #     # print (self.__dict__)
@@ -40,7 +55,8 @@ class SettingsPageView(generic.DetailView):
     #     return context
     
     def get_queryset(self):
-        self.page = get_object_or_404(SettingsPage, id=self.kwargs['pk'])
+        print('KWARGS:', self.kwargs)
+        self.page = get_object_or_404(SettingsPage, pageName=self.kwargs['pagename'])
         return Setting.objects.filter(settingsPage=self.page)
 
 class EditSettings(generic.UpdateView):

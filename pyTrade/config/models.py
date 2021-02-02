@@ -8,6 +8,10 @@ class SettingsPage(models.Model):
 
     def __str__(self):
         return self.pageName
+    
+    def get_absolute_url(self):
+        return ('config:pagename',(),{
+            'pagename': self.pageName})
 
 class Setting(models.Model):
 
